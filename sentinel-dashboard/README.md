@@ -17,7 +17,7 @@ mvn clean package
 ### 1.2 如何启动
 
 使用如下命令启动编译后的控制台：
-
+server.port=8888
 ```bash
 java -Dserver.port=8080 \
 -Dcsp.sentinel.dashboard.server=localhost:8080 \
@@ -59,3 +59,10 @@ java -Dserver.port=8080 \
 控制台收到客户端心跳包之后，会在左侧导航栏中显示该客户端信息。如果控制台能够看到客户端的机器信息，则表明客户端接入成功了。
 
 更多：[控制台功能介绍](./Sentinel_Dashboard_Feature.md)。
+
+
+## 4. 链接influxdb相关配置
+spring.influx.url=http://localhost:8086
+spring.influx.user=admin
+spring.influx.password=admin
+spring.influx.database=sentinel_log
