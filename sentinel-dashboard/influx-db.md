@@ -7,6 +7,12 @@
  * https://zhuanlan.zhihu.com/p/88176525
  
 1. 安装
+* 连接
+influx
+* 创建用户
+CREATE USER admin with PASSWORD 'admin' WITH ALL PRIVILEGES
+* 退出
+exit
 * 用户密码登录
 influx -username admin -password admin
 * 创建数据库
