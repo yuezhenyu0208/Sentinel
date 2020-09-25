@@ -61,9 +61,11 @@ java -Dserver.port=8080 \
 更多：[控制台功能介绍](./Sentinel_Dashboard_Feature.md)。
 
 
-## 4. 链接influxdb相关配置
-启动命令  java -jar -Dspring.influx.url=http://localhost:8086 -Dspring.influx.user=admin -Dspring.influx.password=admin -Dspring.influx.password=admin sentinel-dashboard.jar
-spring.influx.url=http://localhost:8086
-spring.influx.user=admin
-spring.influx.password=admin
-spring.influx.database=sentinel_log
+## 4. 集成influxdb相关配置
+[控制台功能介绍](./Sentinel_Dashboard_Feature.md)。
+* 启动命令  java -jar -Dspring.influx.url=http://localhost:8086 -Dspring.influx.user=admin -Dspring.influx.password=admin -Dspring.influx.database=sentinel_log sentinel-dashboard.jar  
+
+* spring.influx.url=http://localhost:8086  
+* spring.influx.user=admin  
+* spring.influx.password=admin  
+* spring.influx.database=sentinel_log  

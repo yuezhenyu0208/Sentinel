@@ -17,7 +17,7 @@
 1. 创建数据库  
     * CREATE DATABASE sentinel_log
 1. 启动sentinel
-    * java -jar -Dspring.influx.url=http://localhost:8086 -Dspring.influx.user=admin -Dspring.influx.password=admin -Dspring.influx.password=admin sentinel-dashboard.jar
+    * java -jar -Dspring.influx.url=http://localhost:8086 -Dspring.influx.user=admin -Dspring.influx.password=admin -Dspring.influx.database=sentinel_log sentinel-dashboard.jar
 
 1. 配置grafana
 
