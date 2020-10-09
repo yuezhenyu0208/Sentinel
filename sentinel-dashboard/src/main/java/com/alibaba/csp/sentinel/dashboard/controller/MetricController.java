@@ -52,7 +52,8 @@ public class MetricController {
     private static final long maxQueryIntervalMs = 1000 * 60 * 60;
 
     @Autowired
-    @Qualifier("inInfluxdbMetricsRepository")
+    //@Qualifier("inInfluxdbMetricsRepository")
+    @Qualifier("inMemoryMetricsRepository")
     private MetricsRepository<MetricEntity> metricStore;
 
     @ResponseBody

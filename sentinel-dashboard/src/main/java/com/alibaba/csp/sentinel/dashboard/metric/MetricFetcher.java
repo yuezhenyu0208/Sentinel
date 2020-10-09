@@ -82,8 +82,13 @@ public class MetricFetcher {
     private Map<String, AtomicLong> appLastFetchTime = new ConcurrentHashMap<>();
 
     @Autowired
+    @Qualifier("inMemoryMetricsRepository")
+    private MetricsRepository<MetricEntity> inMemoryMetricsRepository;
+
+    @Autowired
     @Qualifier("inInfluxdbMetricsRepository")
-    private MetricsRepository<MetricEntity> metricStore;
+    private MetricsRepository<MetricEntity> inInfluxdbMetricsRepository;
+
     @Autowired
     private AppManagement appManagement;
 
@@ -145,7 +150,8 @@ public class MetricFetcher {
             entity.setGmtCreate(date);
             entity.setGmtModified(date);
         }
-        metricStore.saveAll(map.values());
+        inMemoryMetricsRepository.saveAll(map.values());
+        inInfluxdbMetricsRepository.saveAll(map.values());
     }
 
     /**

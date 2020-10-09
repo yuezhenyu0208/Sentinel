@@ -49,6 +49,10 @@ public class InInfluxdbMetricsRepository implements MetricsRepository<MetricEnti
     @Override
     public synchronized void save(MetricEntity metric) {
         try {
+            double avgRt = 0;
+            if (metric.getSuccessQps() != 0) {
+                avgRt = metric.getRt() / metric.getSuccessQps();
+            }
             Point point = Point
                     .measurement("sentinelInfo")
                     .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
@@ -62,6 +66,7 @@ public class InInfluxdbMetricsRepository implements MetricsRepository<MetricEnti
                     .addField("blockQps", metric.getBlockQps())
                     .addField("exceptionQps", metric.getExceptionQps())
                     .addField("rt", metric.getRt())
+                    .addField("avgRt", avgRt)
                     .addField("count", metric.getCount())
                     .addField("resourceCode", metric.getResourceCode())
                     .build();
@@ -81,6 +86,10 @@ public class InInfluxdbMetricsRepository implements MetricsRepository<MetricEnti
                 .consistency(InfluxDB.ConsistencyLevel.ALL)
                 .build();
         metrics.forEach(metric->{
+            double avgRt = 0;
+            if (metric.getSuccessQps() != 0) {
+                avgRt = metric.getRt() / metric.getSuccessQps();
+            }
             Point point = Point
                     .measurement("sentinelInfo")
                     /**
@@ -102,6 +111,7 @@ public class InInfluxdbMetricsRepository implements MetricsRepository<MetricEnti
                     .addField("blockQps", metric.getBlockQps())
                     .addField("exceptionQps", metric.getExceptionQps())
                     .addField("rt", metric.getRt())
+                    .addField("avgRt", avgRt)
                     .addField("count", metric.getCount())
                     .addField("resourceCode", metric.getResourceCode())
                     .build();
