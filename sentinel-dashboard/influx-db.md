@@ -6,6 +6,9 @@
 ## 步骤
  
 1. 安装 influxdb  
+    > sudo apt install influxdb
+    
+    > sudo apt install influxdb-client
 1. 连接 influxdb  
     * influx
 1. 创建用户  
@@ -25,5 +28,13 @@
         * ![](img/shujuyuan.png)
     2. dashboard
         * ![](img/dashboard.png)
+        
+    3. sql
+        
+        ```sql
+        select QPS  from (SELECT mean("successQps") AS "QPS" FROM "autogen"."sentinelInfo" WHERE ("app" = 'cloud-live-gateway') AND $timeFilter GROUP BY time($__interval), "resource" fill(none)) where QPS > 2 group by "resource" 
+        
+        select avgRt from (SELECT mean("avgRt") AS "avgRt" FROM "autogen"."sentinelInfo" WHERE ("app" = 'cloud-live-service') AND $timeFilter GROUP BY time($__interval), "resource" fill(none)) where avgRt > 1 group by "resource" 
+        ``` 
 
  
