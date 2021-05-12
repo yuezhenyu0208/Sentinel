@@ -55,7 +55,7 @@ public class InInfluxdbMetricsRepository implements MetricsRepository<MetricEnti
             }
             Point point = Point
                     .measurement("sentinelInfo")
-                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                    .time(metric.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
                     .tag("app",metric.getApp())//tag 数据走索引
                     .tag("resource",metric.getResource())//tag 数据走索引
                     .addField("gmtCreate", metric.getGmtCreate().getTime())
@@ -100,7 +100,7 @@ public class InInfluxdbMetricsRepository implements MetricsRepository<MetricEnti
                      * 但是有个问题，使用微妙会导致查询时间有问题，建议这里过滤掉静态请求
                      * 或者客户端屏蔽
                      */
-                    .time(System.currentTimeMillis(), TimeUnit.MILLISECONDS)
+                    .time(metric.getTimestamp().getTime(), TimeUnit.MILLISECONDS)
                     .tag("app",metric.getApp())//tag 数据走索引
                     .tag("resource",metric.getResource())//tag 数据走索引
                     .addField("gmtCreate", metric.getGmtCreate().getTime())
